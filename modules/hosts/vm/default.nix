@@ -14,7 +14,5 @@
       self.nixosModules.nix-dev
       self.nixosModules.homeManagerConfig
     ];
-
   };
-
 }
