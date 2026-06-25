@@ -8,7 +8,7 @@
   flake.homeModules.shell = { pkgs, ... }: {
 
     imports = [
-      self.homeModules.starship
+      self.homeModules.myStarship
     ];
 
     programs.zoxide = {

@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.homeModules.starship = { pkgs, ... }: {
+  flake.homeModules.myStarship = { pkgs, ... }: {
 
     programs.starship = {
       enable = true;

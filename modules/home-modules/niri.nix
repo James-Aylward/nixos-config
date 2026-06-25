@@ -15,7 +15,7 @@
 
       #programs.niri.settings.input.mod-key = "Alt";
       #programs.niri.settings.input.mod-key-nested = "Super";
-      programs.niri.settings.animations.enable = false;
+      #programs.niri.settings.animations.enable = false;
 
       programs.niri.settings.spawn-at-startup = [
         {

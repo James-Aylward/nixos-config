@@ -1,6 +1,7 @@
 {
   self,
   lib,
+  inputs,
   ...
 }:
 {
@@ -10,8 +11,10 @@
     };
 
     imports = [
+  inputs.stylix.homeModules.stylix
       self.homeModules.shell
       self.homeModules.niriConfig
+      self.homeModules.stylixConfig
     ];
 
   };

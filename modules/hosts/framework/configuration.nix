@@ -27,7 +27,8 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
-
+      services.gnome.gnome-keyring.enable = true;
+      programs.nix-ld.enable = true;
       services.geoclue2.enable = true;
       services.localtimed.enable = true;
 

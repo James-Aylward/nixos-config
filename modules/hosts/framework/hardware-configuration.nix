@@ -42,6 +42,10 @@
         ];
       };
 
+      hardware.graphics.enable = true;
+      hardware.graphics.enable32Bit = true;
+      hardware.enableRedistributableFirmware = true;
+
       swapDevices = [ { device = "/dev/disk/by-uuid/d6618fac-45fa-4954-a40b-d7b9d4ed18cb"; } ];
 
       # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
