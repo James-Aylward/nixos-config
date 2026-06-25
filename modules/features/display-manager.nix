@@ -1,14 +1,18 @@
-{ lib, inputs, ... }: {
-  flake.nixosModules.displayManager = { pkgs, ... }: {
-
+{
+  lib,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.displayManager = {pkgs, ...}: {
     console = {
       earlySetup = true;
       useXkbConfig = true;
     };
 
     services.xserver.xkb = {
-      layout = lib.mkForce "us";
-      variant = lib.mkForce "colemak_dh";
+      layout = lib.mkForce "us,us";
+      variant = lib.mkForce "colemak_dh,";
+      options = "grp:alt_space_toggle,ctrl:swapcaps";
     };
 
     services.displayManager.ly = {
@@ -26,7 +30,6 @@
         hide_version_string = true;
 
         term_reset_cmd = "/usr/bin/tput reset; echo -en \"\\e]P0282828\"; echo -en \"\\e]P7EBDBB2\";";
-
       };
     };
   };

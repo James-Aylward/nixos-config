@@ -3,10 +3,8 @@
   lib,
   inputs,
   ...
-}:
-{
-  flake.homeModules.shell = { pkgs, ... }: {
-
+}: {
+  flake.homeModules.shell = {pkgs, ...}: {
     imports = [
       self.homeModules.myStarship
     ];
@@ -27,7 +25,7 @@
     };
 
     programs.neovim = {
-      enable = true;
+      enable = false; # we want to use our own config
       defaultEditor = true;
     };
 
@@ -51,6 +49,7 @@
       git
       gh
       lazygit
+      neovim
 
       eza
       bat
@@ -59,6 +58,5 @@
 
       ripgrep
     ];
-
   };
 }

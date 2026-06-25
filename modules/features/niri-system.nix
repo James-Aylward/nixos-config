@@ -1,5 +1,5 @@
-{ inputs, ... }: {
-  flake.nixosModules.niriSystem = { pkgs, ... }: {
+{inputs, ...}: {
+  flake.nixosModules.niriSystem = {pkgs, ...}: {
     imports = [
       inputs.niri.nixosModules.niri
     ];

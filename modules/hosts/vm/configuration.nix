@@ -5,84 +5,81 @@
   self,
   inputs,
   ...
-}:
-{
-  flake.nixosModules.vmConfig =
-    {
-      config,
-      pkgs,
-      ...
-    }:
-    {
-      imports = [
-        # Include the results of the hardware scan.
-        self.nixosModules.vmHardware
-      ];
+}: {
+  flake.nixosModules.vmConfig = {
+    config,
+    pkgs,
+    ...
+  }: {
+    imports = [
+      # Include the results of the hardware scan.
+      self.nixosModules.vmHardware
+    ];
 
-      # Bootloader.
-      boot.loader.grub.enable = true;
-      boot.loader.grub.device = "/dev/sda";
-      boot.loader.grub.useOSProber = true;
+    # Bootloader.
+    boot.loader.grub.enable = true;
+    boot.loader.grub.device = "/dev/sda";
+    boot.loader.grub.useOSProber = true;
 
-      networking.hostName = "nixos"; # Define your hostname.
+    networking.hostName = "nixos"; # Define your hostname.
 
-      # Enable networking
-      networking.networkmanager.enable = true;
+    # Enable networking
+    networking.networkmanager.enable = true;
 
-      # Set your time zone.
-      time.timeZone = "Australia/Brisbane";
+    # Set your time zone.
+    time.timeZone = "Australia/Brisbane";
 
-      # Select internationalisation properties.
-      i18n.defaultLocale = "en_AU.UTF-8";
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_AU.UTF-8";
 
-      i18n.extraLocaleSettings = {
-        LC_ADDRESS = "en_AU.UTF-8";
-        LC_IDENTIFICATION = "en_AU.UTF-8";
-        LC_MEASUREMENT = "en_AU.UTF-8";
-        LC_MONETARY = "en_AU.UTF-8";
-        LC_NAME = "en_AU.UTF-8";
-        LC_NUMERIC = "en_AU.UTF-8";
-        LC_PAPER = "en_AU.UTF-8";
-        LC_TELEPHONE = "en_AU.UTF-8";
-        LC_TIME = "en_AU.UTF-8";
-      };
-
-      # Configure keymap in X11
-      services.xserver.xkb = {
-        layout = "us";
-        variant = "colemak_dh";
-      };
-
-      # Define a user account. Don't forget to set a password with ‘passwd’.
-      programs.zsh.enable = true;
-      users.defaultUserShell = pkgs.zsh;
-
-      users.users.jamesa = {
-        isNormalUser = true;
-        description = "jamesa";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-        ];
-      };
-      home-manager.users.jamesa = {
-        imports = [ self.homeModules.jamesa ];
-        enableDesktop = true;
-        home.stateVersion = "26.05";
-      };
-
-      # Enable automatic login for the user.
-      services.getty.autologinUser = "jamesa";
-
-      # Allow unfree packages
-      nixpkgs.config.allowUnfree = true;
-
-      # This value determines the NixOS release from which the default
-      # settings for stateful data, like file locations and database versions
-      # on your system were taken. It‘s perfectly fine and recommended to leave
-      # this value at the release version of the first install of this system.
-      # Before changing this value read the documentation for this option
-      # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-      system.stateVersion = "24.11"; # Did you read the comment?
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_AU.UTF-8";
+      LC_IDENTIFICATION = "en_AU.UTF-8";
+      LC_MEASUREMENT = "en_AU.UTF-8";
+      LC_MONETARY = "en_AU.UTF-8";
+      LC_NAME = "en_AU.UTF-8";
+      LC_NUMERIC = "en_AU.UTF-8";
+      LC_PAPER = "en_AU.UTF-8";
+      LC_TELEPHONE = "en_AU.UTF-8";
+      LC_TIME = "en_AU.UTF-8";
     };
+
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "colemak_dh";
+    };
+
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
+
+    users.users.jamesa = {
+      isNormalUser = true;
+      description = "jamesa";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+    };
+    home-manager.users.jamesa = {
+      imports = [self.homeModules.jamesa];
+      enableDesktop = true;
+      home.stateVersion = "26.05";
+    };
+
+    # Enable automatic login for the user.
+    services.getty.autologinUser = "jamesa";
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    system.stateVersion = "24.11"; # Did you read the comment?
+  };
 }

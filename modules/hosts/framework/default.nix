@@ -2,9 +2,7 @@
   self,
   inputs,
   ...
-}:
-{
-
+}: {
   # System configuration
   flake.nixosConfigurations.framework = inputs.nixpkgs.lib.nixosSystem {
     modules = [

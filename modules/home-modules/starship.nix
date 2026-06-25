@@ -1,6 +1,9 @@
-{ self, inputs, ... }: {
-  flake.homeModules.myStarship = { pkgs, ... }: {
-
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.homeModules.myStarship = {pkgs, ...}: {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
@@ -474,7 +477,6 @@
           read_only = " 󰌾";
         };
       };
-
     };
   };
 }
