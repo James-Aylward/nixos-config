@@ -50,6 +50,7 @@
     home.packages = with pkgs; [
       git
       gh
+      lazygit
 
       eza
       bat

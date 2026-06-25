@@ -22,7 +22,7 @@
         errors_fg = "0x01CC241D";
 
         blank_box = false;
-        box_title = "James Framework";
+        box_title = "Hello, world!";
         hide_version_string = true;
 
         term_reset_cmd = "/usr/bin/tput reset; echo -en \"\\e]P0282828\"; echo -en \"\\e]P7EBDBB2\";";

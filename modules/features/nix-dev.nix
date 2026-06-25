@@ -1,5 +1,5 @@
-{inputs, ...}: {
-  flake.nixosModules.nix-dev = {pkgs, ...}: {
+{ inputs, ... }: {
+  flake.nixosModules.nix-dev = { pkgs, ... }: {
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
