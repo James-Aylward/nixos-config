@@ -1,10 +1,14 @@
 {inputs, ...}: {
-  flake.nixosModules.vpn = {
+  flake.nixosModules.tailscale = {
     pkgs,
     config,
     ...
   }: {
     services.tailscale.enable = true;
+
+    # Required for exit nodes
+    services.tailscale.useRoutingFeatures = "both";
+
     networking.nftables.enable = true;
     networking.firewall = {
       enable = true;
