@@ -15,6 +15,8 @@
         quickshell
         dms-shell
         dgop
+        wl-clipboard
+
         libreoffice-fresh
         thunderbird
         obsidian
@@ -26,6 +28,7 @@
         yt-dlp
         calibre
         beets
+
       ];
 
       programs.alacritty = {
@@ -92,7 +95,6 @@
         "Mod+O".repeat = false;
         "Mod+V".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "clipboard" "toggle"];
         "Mod+Escape".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "lock" "lock"];
-
         "Mod+Shift+Q".action.close-window = {};
         "Mod+Shift+Q".repeat = false;
 
@@ -110,6 +112,18 @@
 
         "Mod+Z".action.spawn = [
           "${lib.getExe pkgs.thunderbird}"
+        ];
+
+        "Mod+R".action.spawn = [
+          "${lib.getExe pkgs.alacritty}"
+          "-e"
+          "${lib.getExe pkgs.btop}"
+        ];
+
+        "Mod+G".action.spawn = [
+          "${lib.getExe pkgs.alacritty}"
+          "-e"
+          "${lib.getExe pkgs.lazygit}"
         ];
 
         "Mod+S".action.spawn = [
