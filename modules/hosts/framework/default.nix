@@ -10,6 +10,8 @@
       self.nixosModules.displayManager
       self.nixosModules.niriSystem
       self.nixosModules.nix-dev
+      self.nixosModules.vpn
+      self.nixosModules.calibre
       self.nixosModules.homeManagerConfig
     ];
   };
