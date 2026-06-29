@@ -1,23 +1,26 @@
 {inputs, ...}: {
-  flake.nixosModules.vpn = {pkgs, ...}: {
-
+  flake.nixosModules.vpn = {
+    pkgs,
+    config,
+    ...
+  }: {
     services.tailscale.enable = true;
-  networking.nftables.enable = true;
-  networking.firewall = {
-    enable = true;
-    trustedInterfaces = [ config.services.tailscale.interfaceName ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
-  };
+    networking.nftables.enable = true;
+    networking.firewall = {
+      enable = true;
+      trustedInterfaces = [config.services.tailscale.interfaceName];
+      allowedUDPPorts = [config.services.tailscale.port];
+    };
 
-  # 2. Force tailscaled to use nftables (Critical for clean nftables-only systems)
-  # This avoids the "iptables-compat" translation layer issues.
-  systemd.services.tailscaled.serviceConfig.Environment = [ 
-    "TS_DEBUG_FIREWALL_MODE=nftables" 
-  ];
+    # 2. Force tailscaled to use nftables (Critical for clean nftables-only systems)
+    # This avoids the "iptables-compat" translation layer issues.
+    systemd.services.tailscaled.serviceConfig.Environment = [
+      "TS_DEBUG_FIREWALL_MODE=nftables"
+    ];
 
-  # 3. Optimization: Prevent systemd from waiting for network online 
-  # (Optional but recommended for faster boot with VPNs)
-  systemd.network.wait-online.enable = false; 
-  boot.initrd.systemd.network.wait-online.enable = false;
+    # 3. Optimization: Prevent systemd from waiting for network online
+    # (Optional but recommended for faster boot with VPNs)
+    systemd.network.wait-online.enable = false;
+    boot.initrd.systemd.network.wait-online.enable = false;
   };
 }
