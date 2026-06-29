@@ -4,18 +4,17 @@
   inputs,
   ...
 }: {
-
   flake.homeModules.shell = {pkgs, ...}: {
     imports = [
       self.homeModules.myStarship
     ];
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    silent = true;
-    nix-direnv.enable = true;
-  };
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      silent = true;
+      nix-direnv.enable = true;
+    };
 
     programs.zoxide = {
       enable = true;
