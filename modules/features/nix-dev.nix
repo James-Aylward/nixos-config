@@ -16,6 +16,7 @@
 
       # other
       nix-inspect
+      nix-search
     ];
   };
 }
