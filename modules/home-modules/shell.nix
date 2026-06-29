@@ -4,10 +4,18 @@
   inputs,
   ...
 }: {
+
   flake.homeModules.shell = {pkgs, ...}: {
     imports = [
       self.homeModules.myStarship
     ];
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    silent = true;
+    nix-direnv.enable = true;
+  };
 
     programs.zoxide = {
       enable = true;
@@ -45,17 +53,23 @@
       lg = "${lib.getExe pkgs.lazygit}";
     };
 
+    programs.lazygit = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    programs.btop.enable = true;
+    programs.eza = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    programs.bat.enable = true;
+
     home.packages = with pkgs; [
       git
       gh
-      lazygit
       neovim
-
-      eza
-      bat
       tree
-      btop
-
       ripgrep
     ];
   };
