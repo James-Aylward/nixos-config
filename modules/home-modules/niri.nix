@@ -26,9 +26,7 @@
         imagemagick
         qimgv
         yt-dlp
-        calibre
         beets
-
       ];
 
       programs.alacritty = {
