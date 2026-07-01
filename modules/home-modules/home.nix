@@ -4,10 +4,9 @@
   inputs,
   ...
 }: {
-
   # Home configuration to use on non-NixOS machines
   flake.homeConfigurations.root = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+    pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
     modules = [
       self.homeModules.jamesa
       {
@@ -30,7 +29,6 @@
     imports = [
       inputs.stylix.homeModules.stylix
       self.homeModules.shell
-      self.homeModules.niriConfig
       self.homeModules.stylixConfig
     ];
   };

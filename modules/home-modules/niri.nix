@@ -10,6 +10,10 @@
     ...
   }: {
     config = lib.mkIf config.enableDesktop {
+      imports = [
+        inputs.niri.nixosModules.niri
+      ];
+
       # Things required by dms-shell for full feature
       home.packages = with pkgs; [
         quickshell

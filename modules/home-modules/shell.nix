@@ -24,6 +24,7 @@
     programs.yazi = {
       enable = true;
       enableZshIntegration = true;
+      shellWrapperName = "y"; # silence state version change
     };
 
     programs.fzf = {
