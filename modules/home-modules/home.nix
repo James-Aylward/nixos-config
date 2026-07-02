@@ -9,6 +9,7 @@
     pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
     modules = [
       self.homeModules.jamesa
+      inputs.niri.homeModules.niri
       {
         home.username = "root";
         home.homeDirectory = "/root";
@@ -28,6 +29,7 @@
 
     imports = [
       inputs.stylix.homeModules.stylix
+      self.homeModules.niriConfig
       self.homeModules.shell
       self.homeModules.stylixConfig
     ];

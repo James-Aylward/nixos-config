@@ -10,9 +10,7 @@
     ...
   }: {
     config = lib.mkIf config.enableDesktop {
-      imports = [
-        inputs.niri.nixosModules.niri
-      ];
+      # This makes it possible to run just the home manager config, but system config breaks
 
       # Things required by dms-shell for full feature
       home.packages = with pkgs; [
