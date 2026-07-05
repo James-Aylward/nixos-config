@@ -18,6 +18,7 @@
         dms-shell
         dgop
         wl-clipboard
+        inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
         libreoffice-fresh
         thunderbird
@@ -103,6 +104,13 @@
           "ipc"
           "launcher"
           "open"
+        ];
+
+        "Mod+N".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "notepad"
+          "toggle"
         ];
 
         "Mod+T".action.spawn = [
