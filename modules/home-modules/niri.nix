@@ -19,6 +19,7 @@
         dgop
         wl-clipboard
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+        self.packages.${pkgs.stdenv.hostPlatform.system}.pidopen
 
         libreoffice-fresh
         thunderbird
@@ -80,22 +81,69 @@
       #];
 
       programs.niri.settings.binds = {
-        "XF86AudioRaiseVolume".action.spawn = ["${lib.getExe pkgs.pamixer}" "-i" "5"];
-        "XF86AudioLowerVolume".action.spawn = ["${lib.getExe pkgs.pamixer}" "-d" "5"];
-        "XF86AudioMute".action.spawn = ["${lib.getExe pkgs.pamixer}" "-t"];
-        "XF86MonBrightnessUp".action.spawn = ["${lib.getExe pkgs.brightnessctl}" "-e2" "-n2" "set" "5%+"];
-        "XF86MonBrightnessDown".action.spawn = ["${lib.getExe pkgs.brightnessctl}" "-e2" "-n2" "set" "5%-"];
+        "XF86AudioRaiseVolume".action.spawn = [
+          "${lib.getExe pkgs.pamixer}"
+          "-i"
+          "5"
+        ];
+        "XF86AudioLowerVolume".action.spawn = [
+          "${lib.getExe pkgs.pamixer}"
+          "-d"
+          "5"
+        ];
+        "XF86AudioMute".action.spawn = [
+          "${lib.getExe pkgs.pamixer}"
+          "-t"
+        ];
+        "XF86MonBrightnessUp".action.spawn = [
+          "${lib.getExe pkgs.brightnessctl}"
+          "-e2"
+          "-n2"
+          "set"
+          "5%+"
+        ];
+        "XF86MonBrightnessDown".action.spawn = [
+          "${lib.getExe pkgs.brightnessctl}"
+          "-e2"
+          "-n2"
+          "set"
+          "5%-"
+        ];
 
         "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
-        "Mod+Grave".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "powermenu" "open"];
-        "Mod+Shift+S".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "niri" "screenshot"];
-        "Mod+Shift+Ctrl+S".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "screenshotWindow"];
+        "Mod+Grave".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "powermenu"
+          "open"
+        ];
+        "Mod+Shift+S".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "niri"
+          "screenshot"
+        ];
+        "Mod+Shift+Ctrl+S".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "screenshotWindow"
+        ];
 
         "Mod+O".action.toggle-overview = {};
         "Mod+O".repeat = false;
-        "Mod+V".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "clipboard" "toggle"];
-        "Mod+Escape".action.spawn = ["${lib.getExe pkgs.dms-shell}" "ipc" "lock" "lock"];
+        "Mod+V".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "clipboard"
+          "toggle"
+        ];
+        "Mod+Escape".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "lock"
+          "lock"
+        ];
         "Mod+Shift+Q".action.close-window = {};
         "Mod+Shift+Q".repeat = false;
 
@@ -129,7 +177,7 @@
         ];
 
         "Mod+G".action.spawn = [
-          "${lib.getExe pkgs.alacritty}"
+          "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.pidopen}"
           "-e"
           "${lib.getExe pkgs.lazygit}"
         ];
@@ -143,7 +191,10 @@
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         }";
 
-        "Mod+Return".action.spawn = "${lib.getExe pkgs.alacritty}";
+        "Mod+Return".action.spawn = "${
+          lib.getExe
+          self.packages.${pkgs.stdenv.hostPlatform.system}.pidopen
+        }";
         "Mod+BracketLeft".action.consume-or-expel-window-left = {};
         "Mod+BracketRight".action.consume-or-expel-window-right = {};
         "Mod+Comma".action.consume-window-into-column = {};

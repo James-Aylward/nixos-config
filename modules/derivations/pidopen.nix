@@ -1,31 +1,37 @@
 {
-  description = "A simple script";
+  perSystem = {pkgs, ...}: {
+    packages.pidopen = pkgs.writeShellApplication {
+      name = "pidopen";
 
-  outputs = { self, nixpkgs }: {
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.my-script;
+      runtimeInputs = with pkgs; [
+        alacritty
+        jq
+        niri
+        procps
+        coreutils
+      ];
 
-    packages.x86_64-linux.my-script =
-      let
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
-      in
-      pkgs.writeShellScriptBin "my-script" ''
-            window_class = $(niri msg --json focused-window | jq -r '.app_id')
+      text = ''
+        set -euo pipefail
+
+        window=$(niri msg --json focused-window)
+
+        window_class=$(jq -r '.app_id' <<<"$window")
+
         if [[ "$window_class" != "Alacritty" ]]; then
-            alacritty
-            exit 0
+          exec alacritty "$@"
         fi
 
-        parent_pid=$(hyprctl activewindow | grep pid | awk '{print $2}')
-        echo $parent_pid is parent pid
-        pid=$(pgrep -P $parent_pid | head -n 1)
+        parent_pid=$(jq -r '.pid' <<<"$window")
+        pid=$(pgrep -P "$parent_pid" | head -n1 || true)
 
-        # Check if pid is empty
-        if [ -z "$pid" ]; then
-            alacritty
+        if [[ -n "$pid" ]] &&
+           working_dir=$(readlink "/proc/$pid/cwd" 2>/dev/null); then
+          exec alacritty --working-directory "$working_dir" "$@"
         else
-            working_dir=$(readlink /proc/$pid/cwd)
-            alacritty --working-directory $working_dir
+          exec alacritty "$@"
         fi
       '';
+    };
   };
 }
