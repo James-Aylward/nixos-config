@@ -66,7 +66,23 @@
         path = "${lib.getExe pkgs.xwayland-satellite}";
       };
 
-      #programs.niri.settings.workspaces."sysmon" = { };
+      programs.niri.settings.prefer-no-csd = true;
+
+      programs.niri.settings.layout.focus-ring.active.color = "#d3869b";
+
+      programs.niri.settings.window-rules = [
+        {
+          geometry-corner-radius = {
+            top-left = 10.0;
+            bottom-left = 10.0;
+            top-right = 10.0;
+            bottom-right = 10.0;
+          };
+          clip-to-geometry = true;
+        }
+      ];
+
+      # programs.niri.settings.workspaces."sysmon" = { };
       #programs.niri.settings.window-rules = [
       #  {
       #    matches = [
