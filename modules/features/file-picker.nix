@@ -2,21 +2,21 @@
   lib,
   inputs,
   ...
-}: {
-  flake.nixosModules.filePicker = {pkgs, ...}: {
+}:
+{
+  flake.nixosModules.filePicker = { pkgs, ... }: {
     xdg.portal = {
       enable = true;
-
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-termfilechooser
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
       ];
-
-      config.common = {
-        default = ["gnome"];
-
-        "org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
-      };
+      config.common.default = "*";
     };
+
+    # Install the GTK portal package
+    environment.systemPackages = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
   };
 }

@@ -31,6 +31,7 @@
       inputs.stylix.homeModules.stylix
       self.homeModules.niriConfig
       self.homeModules.shell
+      self.homeModules.media
       self.homeModules.stylixConfig
     ];
   };

@@ -10,6 +10,7 @@
       self.nixosModules.displayManager
       self.nixosModules.niriSystem
       self.nixosModules.filePicker
+      self.nixosModules.virtualisation
       self.nixosModules.nixDev
       self.nixosModules.tailscale
       self.nixosModules.calibre
