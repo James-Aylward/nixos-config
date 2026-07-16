@@ -42,10 +42,9 @@
       };
     in
     {
-      programs.sioyek.enable = true;
-
-      home.packages = [
+      environment.systemPackages = [
         tex
+        pkgs.sioyek
       ];
     };
 }
