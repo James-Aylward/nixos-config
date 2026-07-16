@@ -2,19 +2,21 @@
   self,
   inputs,
   ...
-}: {
+}:
+{
   # System configuration
   flake.nixosConfigurations.framework = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.frameworkConfig
+      self.nixosModules.calibre
       self.nixosModules.displayManager
-      self.nixosModules.niriSystem
       self.nixosModules.filePicker
-      self.nixosModules.virtualisation
+      self.nixosModules.frameworkConfig
+      self.nixosModules.homeManagerConfig
+      self.nixosModules.niriSystem
       self.nixosModules.nixDev
       self.nixosModules.tailscale
-      self.nixosModules.calibre
-      self.nixosModules.homeManagerConfig
+      self.nixosModules.tex
+      self.nixosModules.virtualisation
     ];
   };
 }
