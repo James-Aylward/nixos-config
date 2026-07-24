@@ -71,6 +71,7 @@
       neovim
       tree
       ripgrep
+      ncdu
     ];
   };
 }

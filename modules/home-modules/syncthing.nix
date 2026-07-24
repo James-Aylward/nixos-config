@@ -1,6 +1,6 @@
-{ ... }: {
-  flake.homeModules.syncthing = { pkgs, ... }: {
-    programs.syncthing = {
+{...}: {
+  flake.homeModules.syncthing = {pkgs, ...}: {
+    services.syncthing = {
       enable = true;
       tray.enable = true;
     };

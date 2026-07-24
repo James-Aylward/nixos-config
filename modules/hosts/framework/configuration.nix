@@ -29,6 +29,16 @@
     services.geoclue2.enable = true;
     services.localtimed.enable = true;
 
+    # Printing
+    ##############################################################################
+    services.printing = {
+      enable = true;
+      drivers = with pkgs; [
+        canon-cups-ufr2
+        gutenprint
+      ];
+    };
+
     networking.hostName = "framework"; # Define your hostname.
 
     # Enable networking

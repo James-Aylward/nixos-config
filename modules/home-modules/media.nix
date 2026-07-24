@@ -1,8 +1,5 @@
-{
-  ...
-}:
-{
-  flake.homeModules.media = { pkgs, ... }: {
+{...}: {
+  flake.homeModules.media = {pkgs, ...}: {
     programs.ncspot.enable = true;
   };
 }

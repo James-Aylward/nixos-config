@@ -2,9 +2,8 @@
   lib,
   inputs,
   ...
-}:
-{
-  flake.nixosModules.filePicker = { pkgs, ... }: {
+}: {
+  flake.nixosModules.filePicker = {pkgs, ...}: {
     xdg.portal = {
       enable = true;
       extraPortals = [

@@ -21,6 +21,8 @@
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         self.packages.${pkgs.stdenv.hostPlatform.system}.pidopen
 
+        libnotify
+
         libreoffice-fresh
         thunderbird
         obsidian

@@ -33,6 +33,7 @@
       self.homeModules.shell
       self.homeModules.media
       self.homeModules.stylixConfig
+      self.homeModules.syncthing
     ];
   };
 }

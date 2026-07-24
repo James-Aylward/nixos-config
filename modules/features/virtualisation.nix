@@ -1,8 +1,5 @@
-{
-  ...
-}:
-{
-  flake.nixosModules.virtualisation = { pkgs, ... }: {
+{...}: {
+  flake.nixosModules.virtualisation = {pkgs, ...}: {
     virtualisation.virtualbox.host.enable = true;
     virtualisation.libvirtd.enable = true;
     virtualisation.virtualbox.host.enableKvm = true;
