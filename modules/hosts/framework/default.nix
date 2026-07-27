@@ -10,6 +10,7 @@
       self.nixosModules.displayManager
       self.nixosModules.filePicker
       self.nixosModules.frameworkConfig
+      self.nixosModules.math
       self.nixosModules.homeManagerConfig
       self.nixosModules.niriSystem
       self.nixosModules.nixDev
