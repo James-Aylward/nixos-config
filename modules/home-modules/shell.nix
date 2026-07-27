@@ -49,10 +49,6 @@
       '';
     };
 
-    home.shellAliases = {
-      lg = "${lib.getExe pkgs.lazygit}";
-    };
-
     programs.lazygit = {
       enable = true;
       enableZshIntegration = true;
@@ -72,6 +68,7 @@
       tree
       ripgrep
       ncdu
+      unzip
     ];
   };
 }
