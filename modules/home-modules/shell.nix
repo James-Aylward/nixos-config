@@ -67,8 +67,10 @@
       neovim
       tree
       ripgrep
+      shfmt
       ncdu
       unzip
+      file
     ];
   };
 }

@@ -7,7 +7,8 @@
     networking.firewall = {
       enable = true;
       allowedUDPPorts = [54982];
-      allowedTCPPorts = [9090];
+      allowedTCPPorts = [9090 8010];
+      # TODO 8010 is for VLC
     };
   };
 }
