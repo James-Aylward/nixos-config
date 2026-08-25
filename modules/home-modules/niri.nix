@@ -62,6 +62,9 @@
         {
           sh = "${lib.getExe pkgs.pamixer} --mute";
         }
+        {
+          sh = "${lib.getExe pkgs.emacs} --daemon";
+        }
       ];
 
       programs.niri.settings.xwayland-satellite = {
@@ -106,18 +109,24 @@
 
       programs.niri.settings.binds = {
         "XF86AudioRaiseVolume".action.spawn = [
-          "${lib.getExe pkgs.pamixer}"
-          "-i"
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "audio"
+          "increment"
           "5"
         ];
         "XF86AudioLowerVolume".action.spawn = [
-          "${lib.getExe pkgs.pamixer}"
-          "-d"
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "audio"
+          "decrement"
           "5"
         ];
         "XF86AudioMute".action.spawn = [
-          "${lib.getExe pkgs.pamixer}"
-          "-t"
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "audio"
+          "mute"
         ];
         "XF86MonBrightnessUp".action.spawn = [
           "${lib.getExe pkgs.brightnessctl}"
@@ -132,6 +141,27 @@
           "-n2"
           "set"
           "5%-"
+        ];
+
+        "XF86AudioPlay".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "mpris"
+          "playPause"
+        ];
+
+        "XF86AudioPrev".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "mpris"
+          "previous"
+        ];
+
+        "XF86AudioNext".action.spawn = [
+          "${lib.getExe pkgs.dms-shell}"
+          "ipc"
+          "mpris"
+          "next"
         ];
 
         "Mod+Shift+Slash".action.show-hotkey-overlay = {};
@@ -152,6 +182,11 @@
           "${lib.getExe pkgs.dms-shell}"
           "ipc"
           "screenshotWindow"
+        ];
+
+        "Mod+X".action.spawn = [
+          "emacsclient"
+          "-c"
         ];
 
         "Mod+O".action.toggle-overview = {};

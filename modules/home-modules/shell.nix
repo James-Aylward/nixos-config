@@ -37,6 +37,10 @@
       defaultEditor = true;
     };
 
+    #programs.emacs = {
+    #  enable = true;
+    #};
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -70,7 +74,16 @@
       shfmt
       ncdu
       unzip
+      zip
       file
+      killall
+
+      emacs
+      graphviz # for org-roam
+
+      gcc
+      ispell
+      ghostscript
     ];
   };
 }
