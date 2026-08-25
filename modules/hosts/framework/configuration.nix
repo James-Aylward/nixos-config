@@ -44,8 +44,13 @@
     # Enable networking
     networking.networkmanager.enable = true;
 
-        "claude.ai"
-        "www.claude.ai"
+    networking.hosts = {
+      "127.0.0.1" = [
+        "chatgpt.com"
+        "www.chatgpt.com"
+      ];
+    };
+
     # Select internationalisation properties.
     i18n.defaultLocale = "en_AU.UTF-8";
 
