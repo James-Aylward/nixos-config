@@ -24,8 +24,10 @@
         };
 
         monospace = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Sans Mono";
+          #package = pkgs.dejavu_fonts;
+          package = pkgs.nerd-fonts.iosevka;
+          #name = "DejaVu Sans Mono";
+          name = "Iosevka Nerd Font Mono";
         };
       };
     };

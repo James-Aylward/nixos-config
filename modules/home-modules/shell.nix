@@ -78,7 +78,7 @@
       file
       killall
 
-      emacs
+      emacs-pgtk
       graphviz # for org-roam
 
       gcc
