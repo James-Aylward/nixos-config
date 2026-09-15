@@ -15,6 +15,7 @@
         pgf
         ec
         gensymb
+        fvextra
         cm-super
         environ
         txfonts
