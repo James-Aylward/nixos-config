@@ -11,10 +11,14 @@
       nixd
       statix
 
+      comma
+
       # formatter
       alejandra
+      shfmt
 
       # other
+      just
       nix-inspect
       nix-search
     ];

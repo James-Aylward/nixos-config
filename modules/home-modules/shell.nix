@@ -25,6 +25,40 @@
       enable = true;
       enableZshIntegration = true;
       shellWrapperName = "y"; # silence state version change
+      plugins = with pkgs.yaziPlugins; {
+        ouch.package = ouch;
+        bookmarks.package = bookmarks;
+        full-border = {
+          package = full-border;
+          setup = true;
+        };
+      };
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = ["m"];
+            run = "plugin bookmarks save";
+          }
+          {
+            on = ["'"];
+            run = "plugin bookmarks jump";
+          }
+          {
+            on = [
+              "b"
+              "d"
+            ];
+            run = "plugin bookmarks delete";
+          }
+          {
+            on = [
+              "b"
+              "D"
+            ];
+            run = "plugin bookmarks delete_all";
+          }
+        ];
+      };
     };
 
     programs.fzf = {
@@ -36,10 +70,6 @@
       enable = false; # we want to use our own config
       defaultEditor = true;
     };
-
-    #programs.emacs = {
-    #  enable = true;
-    #};
 
     programs.zsh = {
       enable = true;
@@ -53,9 +83,40 @@
       '';
     };
 
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+        side-by-side = false;
+        syntax-theme = "gruvbox-dark";
+
+        # gruvbox-tinted backgrounds for added/removed lines
+        minus-style = "syntax #3c1f1e";
+        minus-emph-style = "syntax #6b2b27";
+        plus-style = "syntax #32361a";
+        plus-emph-style = "syntax #4f5a1f";
+
+        line-numbers-minus-style = "#fb4934";
+        line-numbers-plus-style = "#b8bb26";
+        line-numbers-zero-style = "#7c6f64";
+        file-style = "bold #fabd2f";
+        hunk-header-style = "file line-number syntax";
+        hunk-header-decoration-style = "#504945 box";
+      };
+    };
+
     programs.lazygit = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        git.diffRenderers = [
+          {
+            command = "delta --dark --paging=never";
+          }
+        ];
+      };
     };
 
     programs.btop.enable = true;
@@ -66,24 +127,22 @@
     programs.bat.enable = true;
 
     home.packages = with pkgs; [
-      git
+      file
+      gcc
       gh
+      git
+      killall
+      moreutils
+      ncdu
       neovim
-      tree
+      pwgen
       ripgrep
       shfmt
-      ncdu
+      tldr
+      tree
       unzip
+      usbutils
       zip
-      file
-      killall
-
-      emacs-pgtk
-      graphviz # for org-roam
-
-      gcc
-      ispell
-      ghostscript
     ];
   };
 }

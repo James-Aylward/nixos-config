@@ -1,5 +1,5 @@
-{ inputs, ... }: {
-  flake.nixosModules.niriSystem = { pkgs, ... }: {
+{inputs, ...}: {
+  flake.nixosModules.niriSystem = {pkgs, ...}: {
     imports = [
       inputs.niri.nixosModules.niri
     ];
@@ -14,7 +14,7 @@
     ];
 
     # For screencasting
-    environment.systemPackages = [ pkgs.gnome-network-displays ];
+    environment.systemPackages = [pkgs.gnome-network-displays];
     networking.firewall = {
       allowedTCPPorts = [
         7236

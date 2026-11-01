@@ -24,6 +24,7 @@
 
         libnotify
 
+        drawio
         libreoffice-fresh
         thunderbird
         obsidian
@@ -32,8 +33,6 @@
         gimp3
         imagemagick
         qimgv
-        yt-dlp
-        beets
       ];
 
       programs.alacritty = {
