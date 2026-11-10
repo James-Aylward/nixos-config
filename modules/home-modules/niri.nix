@@ -28,9 +28,9 @@
         libreoffice
         thunderbird
         obsidian
-        vlc
         darktable
         gimp3
+        kdePackages.kdenlive
         imagemagick
         qimgv
       ];
@@ -60,9 +60,6 @@
         }
         {
           sh = "${lib.getExe pkgs.pamixer} --mute";
-        }
-        {
-          sh = "${lib.getExe pkgs.emacs} --daemon";
         }
       ];
 
@@ -186,11 +183,6 @@
           "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "screenshotWindow"
-        ];
-
-        "Mod+X".action.spawn = [
-          "emacsclient"
-          "-c"
         ];
 
         "Mod+O".action.toggle-overview = {};

@@ -66,9 +66,9 @@
       enableZshIntegration = true;
     };
 
-    programs.neovim = {
-      enable = false; # we want to use our own config
-      defaultEditor = true;
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
     };
 
     programs.zsh = {
@@ -76,6 +76,8 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      # EDITOR=nvim would otherwise make zsh default to vi keybindings
+      defaultKeymap = "emacs";
 
       initContent = ''
         setopt ignore_eof
@@ -133,7 +135,8 @@
       git
       killall
       moreutils
-      ncdu
+      gdu
+      bandwhich
       neovim
       pwgen
       ripgrep
