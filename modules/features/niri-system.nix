@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   flake.nixosModules.niriSystem = {pkgs, ...}: {
     imports = [
       inputs.niri.nixosModules.niri
@@ -11,6 +15,7 @@
 
     fonts.packages = with pkgs; [
       nerd-fonts.iosevka
+      self.packages.${pkgs.stdenv.hostPlatform.system}.libron
     ];
 
     # For screencasting

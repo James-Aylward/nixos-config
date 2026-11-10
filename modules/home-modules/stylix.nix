@@ -9,6 +9,8 @@
     ...
   }: {
     stylix = {
+      overlays.enable = false;
+      targets.rofi.enable = false;
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       polarity = "dark";

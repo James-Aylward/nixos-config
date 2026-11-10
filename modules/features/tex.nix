@@ -8,10 +8,8 @@
     pkgs,
     ...
   }: let
-    tex = pkgs.texlive.combine {
-      inherit
-        (pkgs.texlive)
-        scheme-full
+    tex = pkgs.texliveFull.withPackages (ps:
+      with ps; [
         pgf
         ec
         gensymb
@@ -36,8 +34,7 @@
         listings
         enumitem
         psnfss
-        ;
-    };
+      ]);
   in {
     environment.systemPackages = [
       tex

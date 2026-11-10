@@ -12,11 +12,11 @@
     config = lib.mkIf config.enableDesktop {
       # This makes it possible to run just the home manager config, but system config breaks
 
-      # Things required by dms-shell for full feature
+      # Things required by dux-shell for full feature
       home.packages = with pkgs; [
         quickshell
-        dms-shell
-        dgop
+        dux-shell
+        dux-gop
         wl-clipboard
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         self.packages.${pkgs.stdenv.hostPlatform.system}.pidopen
@@ -25,7 +25,7 @@
         libnotify
 
         drawio
-        libreoffice-fresh
+        libreoffice
         thunderbird
         obsidian
         vlc
@@ -50,7 +50,7 @@
 
       programs.niri.settings.spawn-at-startup = [
         {
-          sh = "${lib.getExe pkgs.dms-shell} run";
+          sh = "${lib.getExe pkgs.dux-shell} run";
         }
         {
           sh = "${lib.getExe pkgs.signal-desktop} --start-in-tray";
@@ -72,6 +72,11 @@
       };
 
       programs.niri.settings.prefer-no-csd = true;
+
+      programs.niri.settings.input.touchpad = {
+        natural-scroll = true;
+        tap = true;
+      };
 
       programs.niri.settings.layout.focus-ring.active.color = "#d3869b";
 
@@ -108,21 +113,21 @@
 
       programs.niri.settings.binds = {
         "XF86AudioRaiseVolume".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "audio"
           "increment"
           "5"
         ];
         "XF86AudioLowerVolume".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "audio"
           "decrement"
           "5"
         ];
         "XF86AudioMute".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "audio"
           "mute"
@@ -143,21 +148,21 @@
         ];
 
         "XF86AudioPlay".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "mpris"
           "playPause"
         ];
 
         "XF86AudioPrev".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "mpris"
           "previous"
         ];
 
         "XF86AudioNext".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "mpris"
           "next"
@@ -166,19 +171,19 @@
         "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
         "Mod+Grave".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "powermenu"
           "open"
         ];
         "Mod+Shift+S".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "niri"
           "screenshot"
         ];
         "Mod+Shift+Ctrl+S".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "screenshotWindow"
         ];
@@ -191,13 +196,13 @@
         "Mod+O".action.toggle-overview = {};
         "Mod+O".repeat = false;
         "Mod+V".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "clipboard"
           "toggle"
         ];
         "Mod+Escape".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "lock"
           "lock"
@@ -225,7 +230,7 @@
         ];
 
         "Mod+N".action.spawn = [
-          "${lib.getExe pkgs.dms-shell}"
+          "${lib.getExe pkgs.dux-shell}"
           "ipc"
           "notepad"
           "toggle"
