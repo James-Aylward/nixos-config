@@ -4,12 +4,25 @@
   inputs,
   ...
 }: {
-  # Home configuration to use on non-NixOS machines
+  # Headless home configuration for non-NixOS machines: shell/dev tools only
   flake.homeConfigurations.root = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
     modules = [
-      self.homeModules.jamesa
-      inputs.niri.homeModules.niri
+      self.homeModules.shell
+      inputs.stylix.homeModules.stylix
+      self.homeModules.stylixConfig
+      {
+        # Only theme the terminal tools; skip GTK/KDE/GNOME/fonts on headless boxes
+        stylix.autoEnable = false;
+        stylix.targets = {
+          bat.enable = true;
+          btop.enable = true;
+          fzf.enable = true;
+          lazygit.enable = true;
+          starship.enable = true;
+          yazi.enable = true;
+        };
+      }
       {
         home.username = "root";
         home.homeDirectory = "/root";
