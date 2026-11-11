@@ -16,6 +16,7 @@
         home.stateVersion = "26.05";
         # Headless box: no D-Bus session, so skip the dconfSettings activation step
         dconf.enable = false;
+        programs.home-manager.enable = true;
       }
     ];
   };
