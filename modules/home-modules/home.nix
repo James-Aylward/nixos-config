@@ -14,6 +14,8 @@
         home.username = "root";
         home.homeDirectory = "/root";
         home.stateVersion = "26.05";
+        # Headless box: no D-Bus session, so skip the dconfSettings activation step
+        dconf.enable = false;
       }
     ];
   };

@@ -10,6 +10,7 @@
       self.nixosModules.calibre
       self.nixosModules.displayManager
       self.nixosModules.filePicker
+      self.nixosModules.fingerprint
       self.nixosModules.frameworkConfig
       self.nixosModules.math
       self.nixosModules.homeManagerConfig

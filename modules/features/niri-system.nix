@@ -13,6 +13,8 @@
     services.accounts-daemon.enable = true;
     programs.niri.enable = true;
 
+    systemd.user.services.niri-flake-polkit.serviceConfig.UnsetEnvironment = ["QT_STYLE_OVERRIDE"];
+
     fonts.packages = with pkgs; [
       nerd-fonts.iosevka
       self.packages.${pkgs.stdenv.hostPlatform.system}.libron
