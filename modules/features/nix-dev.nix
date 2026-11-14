@@ -18,15 +18,17 @@
 
     # Prebuilt nix-index database: provides `nix-locate`, the shell's
     # "command not found" suggestions, and a `comma` wired up to it
-    programs.nix-index-database.comma.enable = true;
-    programs.nix-index.enableZshIntegration = true;
+    programs = {
+      nix-index-database.comma.enable = true;
+      nix-index.enableZshIntegration = true;
 
-    programs.nh = {
-      enable = true;
-      flake = "/home/jamesa/projects/nixos-config"; # sets NH_FLAKE
-      clean = {
-        enable = true; # weekly GC timer
-        extraArgs = "--keep 5 --keep-since 7d";
+      nh = {
+        enable = true;
+        flake = "/home/jamesa/projects/nixos-config"; # sets NH_FLAKE
+        clean = {
+          enable = true; # weekly GC timer
+          extraArgs = "--keep 5 --keep-since 7d";
+        };
       };
     };
 

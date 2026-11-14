@@ -1,13 +1,5 @@
-{
-  self,
-  lib,
-  ...
-}: {
-  flake.homeModules.stylixConfig = {
-    pkgs,
-    config,
-    ...
-  }: {
+_: {
+  flake.homeModules.stylixConfig = {pkgs, ...}: {
     stylix = {
       overlays.enable = false;
       targets.rofi.enable = false;

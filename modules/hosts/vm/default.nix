@@ -9,7 +9,7 @@
       self.nixosModules.vmConfig
       self.nixosModules.displayManager
       self.nixosModules.niriSystem
-      self.nixosModules.nix-dev
+      self.nixosModules.nixDev
       self.nixosModules.homeManagerConfig
     ];
   };

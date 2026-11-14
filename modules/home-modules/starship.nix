@@ -1,9 +1,5 @@
-{
-  self,
-  inputs,
-  ...
-}: {
-  flake.homeModules.myStarship = {pkgs, ...}: {
+_: {
+  flake.homeModules.myStarship = _: {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;

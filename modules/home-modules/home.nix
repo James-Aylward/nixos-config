@@ -24,9 +24,11 @@
         };
       }
       {
-        home.username = "root";
-        home.homeDirectory = "/root";
-        home.stateVersion = "26.05";
+        home = {
+          username = "root";
+          homeDirectory = "/root";
+          stateVersion = "26.05";
+        };
         # Headless box: no D-Bus session, so skip the dconfSettings activation step
         dconf.enable = false;
         programs.home-manager.enable = true;
@@ -34,11 +36,7 @@
     ];
   };
 
-  flake.homeModules.jamesa = {
-    pkgs,
-    config,
-    ...
-  }: {
+  flake.homeModules.jamesa = {...}: {
     options = {
       enableDesktop = lib.mkEnableOption "desktop environment (niri)";
     };

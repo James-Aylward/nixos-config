@@ -1,24 +1,19 @@
-{
-  self,
-  inputs,
-  ...
-}: {
-  flake.nixosModules.vmConfig = {
-    config,
-    pkgs,
-    ...
-  }: {
+{self, ...}: {
+  flake.nixosModules.vmConfig = {pkgs, ...}: {
     imports = [
       self.nixosModules.vmHardware
     ];
 
-    boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sda";
-    boot.loader.grub.useOSProber = true;
+    boot.loader.grub = {
+      enable = true;
+      device = "/dev/sda";
+      useOSProber = true;
+    };
 
-    networking.hostName = "nixos";
-
-    networking.networkmanager.enable = true;
+    networking = {
+      hostName = "nixos";
+      networkmanager.enable = true;
+    };
 
     time.timeZone = "Australia/Brisbane";
 
@@ -36,9 +31,12 @@
       LC_TIME = "en_AU.UTF-8";
     };
 
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "colemak_dh";
+    services = {
+      xserver.xkb = {
+        layout = "us";
+        variant = "colemak_dh";
+      };
+      getty.autologinUser = "jamesa";
     };
 
     programs.zsh.enable = true;
@@ -57,8 +55,6 @@
       enableDesktop = true;
       home.stateVersion = "26.05";
     };
-
-    services.getty.autologinUser = "jamesa";
 
     nixpkgs.config.allowUnfree = true;
 

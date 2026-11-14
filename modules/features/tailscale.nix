@@ -1,9 +1,5 @@
-{inputs, ...}: {
-  flake.nixosModules.tailscale = {
-    pkgs,
-    config,
-    ...
-  }: {
+_: {
+  flake.nixosModules.tailscale = {config, ...}: {
     services.tailscale.enable = true;
 
     # Required for exit nodes
